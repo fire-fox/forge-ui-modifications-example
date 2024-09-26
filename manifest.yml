@@ -40,4 +40,5 @@ permissions:
       - 'unsafe-inline'
 app:
   runtime:
-    name: sandbox
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/13b0256e-e087-4a2f-a2d3-ab519c39c062

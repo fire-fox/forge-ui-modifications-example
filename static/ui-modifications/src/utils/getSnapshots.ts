@@ -31,3 +31,16 @@ export function getScreenTabsSnapshot({ getScreenTabs }: HookApi) {
     return acc;
   }, {});
 }
+
+export const consoleLogDataSnapshots = (api: HookApi) => {
+  console.log('Fields snapshot:');
+  console.table(getFieldsSnapshot(api));
+
+  console.log('Screen tabs snapshot:');
+  console.table(getScreenTabsSnapshot(api));
+};
+
+export const consoleLogLastUserChange = (field: Field<any>) => {
+  console.log('Last change snapshot:');
+  console.table({ [field.getId()]: getFieldData(field) });
+};

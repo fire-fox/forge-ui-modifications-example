@@ -1,134 +1,70 @@
-import { view, requestJira } from '@forge/bridge';
-import {
-  type OnChangeHookCallback,
-  type OnInitHookCallback,
-  uiModificationsApi,
-} from '@forge/jira-bridge';
-import { getFieldsSnapshot, getScreenTabsSnapshot } from './utils/getSnapshots.ts';
+import { view } from '@forge/bridge';
+import { HookApi, uiModificationsApi } from '@forge/jira-bridge';
+import { consoleLogDataSnapshots, consoleLogLastUserChange } from './utils/getSnapshots.ts';
+import { UiModificationExtension } from './types.ts';
+import { BUG_TEMPLATE, OTHER_TEMPLATE } from './utils/templates.ts';
 
 const log = console.log;
 console.log = (...args) => {
   log('UI modifications app,', ...args);
 };
 
-const isIssueView = (viewType) => viewType === 'IssueView';
+// const isIssueTranstion = (extension: UiModificationExtension) => extension.viewType === 'IssueTransition';
+// const isIssueView = (extension: UiModificationExtension) => extension.viewType === 'IssueView';
+// const isIssueCreate = (extension: UiModificationExtension) => extension.viewType === 'GIC';
+// const isBugType = (extension: UiModificationExtension) => extension.issueType.name === 'Bug';
 
 // Context usage
 view.getContext().then((context) => {
-  const { extension } = context;
+  const extension = context.extension as UiModificationExtension;
   console.log('Context:');
-  const issue = extension.issue ?? { id: undefined, key: undefined };
-  console.table({ project: extension.project, issueType: extension.issueType, issue: issue });
-  console.table({ viewType: extension.viewType });
+  console.table(extension);
 });
 
 const { onInit, onChange } = uiModificationsApi;
 
-const onInitCallback: OnInitHookCallback = async ({ api, uiModifications }) => {
-  const { getFieldById } = api;
-  const {
-    extension: { viewType },
-  } = await view.getContext();
-  // Hiding the priority field
-  const priority = getFieldById('priority');
-  priority?.setVisible(false);
+onInit(
+  async ({ api, uiModifications }) => {
+    consoleLogDataSnapshots(api);
+    const { getFieldById, getScreenTabById } = api;
 
-  // Changing the summary field label
-  const summary = getFieldById('summary');
-  summary?.setName('Modified summary label');
-  // Changing the value of the summary field, only on Issue view
-  if (isIssueView(viewType)) {
-    summary?.setValue('Modified summary value');
-  }
+    const extension = (await view.getContext()).extension as UiModificationExtension;
 
-  // Changing the assignee field description and name
-  const assignee = getFieldById('assignee');
-  assignee?.setDescription('Description added by UI modifications');
-  assignee?.setName('Name of the assignee changed by UI modifications');
+    // ##################
+    // TODO 1: Set template for description but only on Issue create
+    // Different for Bug and different for other types
 
-  // Changing the name of description field
-  const description = getFieldById('description');
-  description?.setName('Modified description name');
-  // Changing the value of the description field, only on Issue view
-  if (isIssueView(viewType)) {
-    description?.setValue({
-      version: 1,
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'Modified description value',
-            },
-          ],
-        },
-      ],
-    });
-  }
+    // ##################
+    // TODO 2: Make the Quality Assurance tab visibile only when user tries to transtion into "Done" status.
+    // Require "change impact" and "quality review" fields to be fulfilled by the user.
 
-  console.log('Fields Snapshot:');
-  console.table(getFieldsSnapshot(api));
+    // ##################
+    // TODO 3: Limit the amount
+    // Limit list of priorities if labels contains "RTB"
+    // We want to avoid situation when RTB work is always at the bottom of the backlog
+    // Hence, this can help us enforcing the priority for RTB work.
+  },
+  () => {
+    // return ['description', 'customfield_10070', 'customfield_10069', 'priority'];
+    return [];
+  },
+);
 
-  console.log('Screen tabs Snapshot:');
-  console.table(getScreenTabsSnapshot(api));
+onChange(
+  ({ api, change }) => {
+    const { getFieldById } = api;
+    // The `change.current` property provides access to the field which triggered the change
+    const { current: currentChange } = change;
+    if (!currentChange) {
+      return;
+    }
+    consoleLogLastUserChange(currentChange);
 
-  // Here we read the data that can be set when creating the UI modifications context
-  // This is preferred method of making small customizations to adapt your UI modifications to different projects and issue types
-  uiModifications.forEach((uiModification) => {
-    console.log(`Data for UI modification ID ${uiModification.id}`, uiModification.data);
-  });
-
-  // Return a Promise to apply changes after resolve.
-  return new Promise(async (resolve) => {
-    // Example Product API call, lists all the projects before applying the UIM changes
-    const result = await requestJira('/rest/api/3/project');
-    console.log('API call result:', { status: result.status, projects: await result.json() });
-    resolve();
-  });
-};
-
-onInit(onInitCallback, () => {
-  return ['summary', 'assignee', 'description', 'priority'];
-});
-
-const onChangeCallback: OnChangeHookCallback = ({ api, change, uiModifications }) => {
-  // The `change.current` property provides access
-  // to the field which triggered the change
-  const { current: currentChange } = change;
-  if (!currentChange) {
-    return;
-  }
-
-  const id = currentChange.getId();
-
-  // The UI modifications data is also present in the onChange callback
-  uiModifications.forEach((uiModification) => {
-    console.log(`Data for UI modification ID ${uiModification.id}`, uiModification.data);
-  });
-
-  // Checking if the change event was triggered by the `summary` field
-  if (id === 'summary') {
-    // Logging the current `summary` field value
-    const value = currentChange.getValue();
-    console.log(`The ${id} field value is: ${value}`);
-
-    // Updating the `summary` field description
-    currentChange.setDescription(`The ${id} field was updated at: ${new Date().toString()}`);
-
-    // Showing the priority field (keep in mind the onInitCallback hides it)
-    api.getFieldById('priority')?.setVisible(true);
-
-    // Delaying changes application
-    const delay = 3000;
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(`Changes applied after ${delay}ms delay`);
-        resolve();
-      }, delay);
-    });
-  }
-};
-
-onChange(onChangeCallback, () => ['summary', 'priority']);
+    // ##################
+    // TODO 4: Limit list of priorites just after user adds the "RTB" label.
+    // Similar logic like in onInit
+    // const id = currentChange.getId();
+  },
+  // () => ['priority'],
+  () => [],
+);

@@ -11,7 +11,12 @@ let resolver = new Resolver();
 
 define(resolver);
 
-resolver.define('GET projects', async ({ payload }) => {
+resolver.define('GET projects', async ({ payload, context }) => {
+  if (!context.userAccess?.hasAccess) {
+    return {
+      'error': 'user does not have access',
+    }
+  }
   const params = new URLSearchParams(payload.params || {});
   const requestURL = route`/rest/api/3/project/search?${params}`;
 

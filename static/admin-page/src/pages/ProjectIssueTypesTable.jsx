@@ -5,10 +5,16 @@ import React, { useEffect, useState } from 'react';
 
 export function ProjectIssueTypesTable() {
   const [projectData, setProjectData] = useState(null);
+  const [hasError, setHasError] = useState(null);
   const [issueTypeData, setIssueTypeData] = useState(null);
 
   useEffect(() => {
     invoke('GET projects', { expand: 'urls' }).then((data) => {
+      console.log(data);
+      setHasError('error' in data);
+      if ('error' in data) {
+        return;
+      }
       if ('data' in data) {
         data.data = JSON.parse(data.data);
       }
@@ -102,6 +108,10 @@ export function ProjectIssueTypesTable() {
   ) : (
     'Loading...'
   );
+
+  if (hasError) {
+    return (<h3>You do not have permission to see the result</h3>);
+  } 
 
   return (
     <>

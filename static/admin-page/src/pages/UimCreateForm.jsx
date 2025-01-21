@@ -5,8 +5,16 @@ import TextArea from '@atlaskit/textarea';
 import TextField from '@atlaskit/textfield';
 import React, { useState, useEffect } from 'react';
 import { invokeUiModifications } from '../invokeUiModifications';
+import { view } from '@forge/bridge';
 
-function createUiModification(data, setUiModificationResult) {
+async function createUiModification(data, setUiModificationResult) {
+  const context = await view.getContext();
+  console.log(context);
+  if (!context?.userAccess?.hasAccess) {
+    window.alert("you don't have permission to do this.");
+    return;
+  }
+
   invokeUiModifications('POST /rest/api/3/uiModifications', {
     body: {
       name: data['ia-name'],
@@ -40,7 +48,7 @@ export function UimCreateForm() {
         flexDirection: 'column',
       }}
     >
-      <h1>Create UI modification</h1>
+      <h1>Create UI modification Test</h1>
       <Form
         onSubmit={(data) => {
           setUiModificationResult(null);

@@ -12,6 +12,7 @@ let resolver = new Resolver();
 define(resolver);
 
 resolver.define('GET projects', async ({ payload, context }) => {
+  console.log('context', context);
   if (!context.userAccess?.hasAccess) {
     return {
       'error': 'user does not have access',

@@ -21,6 +21,8 @@ modules:
               route: '/projectissuetypes'
       resolver:
         function: resolver
+      # displayConditions:
+      #   hasAppAccess: true
   function:
     - key: resolver
       handler: index.handler

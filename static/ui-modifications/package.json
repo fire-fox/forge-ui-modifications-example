@@ -4,18 +4,17 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@forge/bridge": "4.1.0",
-    "@forge/jira-bridge": "0.35.0"
+    "@forge/bridge": "4.4.0",
+    "@forge/jira-bridge": "0.37.0"
   },
   "devDependencies": {
     "@parcel/resolver-default": "^2.13.0",
     "cross-env": "7.0.3",
-    "parcel": "2.13.0",
-    "rimraf": "6.0.1"
+    "parcel": "2.13.0"
   },
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "rimraf dist && cross-env PARCEL_WORKERS=0 parcel build public/index.html --no-cache"
+    "build": "rm -rf dist && cross-env PARCEL_WORKERS=0 parcel build public/index.html --no-cache"
   },
   "targets": {
     "default": {

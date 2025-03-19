@@ -789,10 +789,28 @@
     "@types/node-fetch" "^2.6.11"
     node-fetch "2.7.0"
 
+"@forge/api@5.1.0":
+  version "5.1.0"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/api/-/api-5.1.0.tgz#c71777b5314ca01852a545013f160c076c2f3ddb"
+  integrity sha512-0Hqwa7Rdtfg/u7kFJ27UJ7U6uzqUUk68W/LRoMZvLV2xTqc7a+DojT66FufphYpPhJclvHqLbjwWE8qu+jLoGA==
+  dependencies:
+    "@forge/auth" "0.0.7"
+    "@forge/egress" "1.4.0"
+    "@forge/storage" "1.7.3"
+    "@forge/util" "1.4.8"
+    headers-utils "^3.0.2"
+
 "@forge/auth@0.0.5":
   version "0.0.5"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/auth/-/auth-0.0.5.tgz#d8df38fc55a7508121bef2508f494ee4a81e8072"
   integrity sha512-JIJMRRnNWQjvLlnf2Goc+/CEzx+XTpzTarOR7wzRMOEoE715T5gdvb4hWeyQVyRJkRJUQQAXxDPT0WH7rINOcg==
+  dependencies:
+    tslib "^2.6.2"
+
+"@forge/auth@0.0.7":
+  version "0.0.7"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/auth/-/auth-0.0.7.tgz#b66115c9736f2d2041e983862d5de69836397cb5"
+  integrity sha512-9wzbl7FoaTZsVXuBI6F4O9TWRucpM76WILKoimGSK/1n6JMiai0QHBmBJLAon8jO/MmTJSHPxLE48UjR+J2s7Q==
   dependencies:
     tslib "^2.6.2"
 
@@ -809,6 +827,13 @@
   version "1.3.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/egress/-/egress-1.3.0.tgz#381252e9ff3d8fb1cd889426f9b2ddd6e13d3a04"
   integrity sha512-M3yDCmIP8lMoYq2YqHhO20nHplIHOdRpuyNjlcygSDD15f0mVlw6XmJF3Htku5/MpBz+3opYZOlwTEmK2ozXSg==
+  dependencies:
+    minimatch "^9.0.3"
+
+"@forge/egress@1.4.0":
+  version "1.4.0"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/egress/-/egress-1.4.0.tgz#b4bd01c25b0813096370d1d2b9abd582d828fcf6"
+  integrity sha512-7Jrjq6kgF32yI4kqSmXz6z6ac9zOyrEn3NEq4jDUZ2eAq/qn0UugE/+9t7MlEd1jsz94hY9utezwjqkRc1qKwQ==
   dependencies:
     minimatch "^9.0.3"
 
@@ -836,10 +861,20 @@
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/storage/-/storage-1.7.0.tgz#3ca03f17306da00eec1e2def59720eaf25e51879"
   integrity sha512-sQIVq/SnkFiYm/ZKC445WavyOoa2QBT4RXm+EoIxGnfrQjhMI6mqwoxhZumoCRklF08TBEmMUsyxQyhhOc8erg==
 
+"@forge/storage@1.7.3":
+  version "1.7.3"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/storage/-/storage-1.7.3.tgz#c44d5451a7740b44cd6c9b3e510fa0a3241a4428"
+  integrity sha512-i6tN5GlLleegMzpkT3nutxnVASwbSTxYAubKXA989zigF/ndaqqFiD5c6GYZb5jEgo7VT872OzxHAL3kEY0adQ==
+
 "@forge/util@1.4.6":
   version "1.4.6"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/util/-/util-1.4.6.tgz#49ddda3dd0995e4fecd67de1e7271c9ef406a159"
   integrity sha512-6AXbt0VUJvlC6iPpt/eM1L6G16ydJ5S+XR8rjzDpWtLTQhtexkDpGj2milAweqdElGrxLe64Hd/Q+SvqJPXA5Q==
+
+"@forge/util@1.4.8":
+  version "1.4.8"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/@forge/util/-/util-1.4.8.tgz#bd089b358b34ad639d3ef8139adecec197555146"
+  integrity sha512-5D3E2W6j4VzNet2X98It8GRfOJFAkAI/eyCz1VFOX2BzYBMFofuyHr4/PDDpan/I6MnYtSdamlC8P7Q/B3OJDg==
 
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
@@ -2228,6 +2263,11 @@ hastscript@^6.0.0:
     hast-util-parse-selector "^2.0.0"
     property-information "^5.0.0"
     space-separated-tokens "^1.0.0"
+
+headers-utils@^3.0.2:
+  version "3.0.2"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/headers-utils/-/headers-utils-3.0.2.tgz#dfc65feae4b0e34357308aefbcafa99c895e59ef"
+  integrity sha512-xAxZkM1dRyGV2Ou5bzMxBPNLoRCjcX+ya7KSWybQD2KwLphxsapUVK6x/02o7f4VU6GPSXch9vNY2+gkU8tYWQ==
 
 hoist-non-react-statics@^3.3.1:
   version "3.3.2"

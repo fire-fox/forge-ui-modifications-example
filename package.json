@@ -30,6 +30,6 @@
     },
     "dependencies": {
         "@forge/api": "5.1.0",
-        "@forge/resolver": "1.6.5"
+        "@forge/resolver": "1.6.8"
     }
 }

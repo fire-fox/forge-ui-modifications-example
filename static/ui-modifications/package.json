@@ -4,13 +4,13 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@forge/bridge": "4.5.0",
+    "@forge/bridge": "4.5.1",
     "@forge/jira-bridge": "0.37.2"
   },
   "devDependencies": {
-    "@parcel/resolver-default": "^2.13.0",
+    "@parcel/resolver-default": "^2.14.4",
     "cross-env": "7.0.3",
-    "parcel": "2.14.1"
+    "parcel": "2.14.4"
   },
   "scripts": {
     "start": "parcel public/index.html",

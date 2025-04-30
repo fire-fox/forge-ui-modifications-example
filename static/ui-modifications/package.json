@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@forge/bridge": "4.5.1",
+    "@forge/bridge": "4.5.2",
     "@forge/jira-bridge": "0.37.2"
   },
   "devDependencies": {

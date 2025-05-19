@@ -31,5 +31,8 @@
     "dependencies": {
         "@forge/api": "5.2.0",
         "@forge/resolver": "1.6.10"
+    },
+    "resolutions": {
+        "@babel/runtime": "7.26.10"
     }
 }

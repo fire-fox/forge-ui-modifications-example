@@ -149,7 +149,7 @@ export const ContextSelector = ({ setSubmitDisabled }) => {
           options={[
             { label: 'GIC', value: 'GIC' },
             { label: 'Issue View', value: 'IssueView' },
-            { label: 'Issue Transition (EAP)', value: 'IssueTransition' },
+            { label: 'Issue Transition', value: 'IssueTransition' },
           ]}
         />
       )}

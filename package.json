@@ -29,8 +29,8 @@
         "process": "^0.11.10"
     },
     "dependencies": {
-        "@forge/api": "5.2.0",
-        "@forge/resolver": "1.6.10"
+        "@forge/api": "5.2.1",
+        "@forge/resolver": "1.6.11"
     },
     "resolutions": {
         "@babel/runtime": "7.26.10"

@@ -4,8 +4,8 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@forge/bridge": "4.5.2",
-    "@forge/jira-bridge": "0.37.2"
+    "@forge/bridge": "4.5.3",
+    "@forge/jira-bridge": "0.38.0"
   },
   "devDependencies": {
     "@parcel/resolver-default": "^2.14.4",

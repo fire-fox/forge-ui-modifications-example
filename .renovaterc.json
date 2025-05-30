@@ -3,6 +3,8 @@
   "extends": [
     "config:base"
   ],
+  "groupName": "all dependencies",
+  "groupSlug": "all",
   "branchPrefix": "issue/renovate/",
   "rangeStrategy": "bump",
   "rebaseWhen": "behind-base-branch",
@@ -20,6 +22,8 @@
       ]
     },
     {
+      "groupName": "all dependencies",
+      "groupSlug": "all",
       "matchPackagePatterns": [
         "@forge/",
         "@atlaskit/"

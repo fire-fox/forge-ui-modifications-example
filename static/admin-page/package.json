@@ -1,52 +1,51 @@
 {
-    "name": "ui-modifications-admin-page",
-    "version": "0.2.0",
-    "private": true,
-    "homepage": ".",
-    "dependencies": {
-        "@atlaskit/button": "^17.1.0",
-        "@atlaskit/code": "^15.1.0",
-        "@atlaskit/css-reset": "^6.6.2",
-        "@atlaskit/dropdown-menu": "^12.1.10",
-        "@atlaskit/flag": "^15.2.22",
-        "@atlaskit/form": "^9.0.5",
-        "@atlaskit/modal-dialog": "^12.10.3",
-        "@atlaskit/page-layout": "^2.0.1",
-        "@atlaskit/select": "^17.0.3",
-        "@atlaskit/table-tree": "^9.6.9",
-        "@atlaskit/tabs": "^16.0.0",
-        "@atlaskit/textarea": "^5.0.0",
-        "@atlaskit/textfield": "^6.0.0",
-        "@forge/bridge": "^3.2.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-router-dom": "^6.15.0"
-    },
-    "devDependencies": {
-        "@parcel/resolver-default": "^2.9.3",
-        "cross-env": "7.0.3",
-        "parcel": "2.9.3",
-        "rimraf": "5.0.1"
-    },
-    "scripts": {
-        "start": "cross-env PARCEL_WORKERS=0 parcel watch public/index.html --no-hmr --no-cache",
-        "build": "rimraf dist && cross-env PARCEL_WORKERS=0 parcel build public/index.html --no-cache"
-    },
-    "targets": {
-        "default": {
-            "publicUrl": "./"
-        }
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+  "name": "ui-modifications-admin-page",
+  "version": "0.2.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@atlaskit/button": "23.2.1",
+    "@atlaskit/code": "17.2.0",
+    "@atlaskit/css-reset": "7.3.0",
+    "@atlaskit/dropdown-menu": "16.0.1",
+    "@atlaskit/flag": "17.1.5",
+    "@atlaskit/form": "12.0.5",
+    "@atlaskit/modal-dialog": "14.2.2",
+    "@atlaskit/page-layout": "4.2.1",
+    "@atlaskit/select": "20.6.1",
+    "@atlaskit/table-tree": "12.1.3",
+    "@atlaskit/tabs": "18.1.0",
+    "@atlaskit/textarea": "8.0.3",
+    "@atlaskit/textfield": "8.0.5",
+    "@forge/bridge": "4.5.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.14.4",
+    "cross-env": "7.0.3",
+    "parcel": "2.14.4"
+  },
+  "scripts": {
+    "start": "cross-env PARCEL_WORKERS=0 parcel watch public/index.html --no-hmr --no-cache",
+    "build": "rm -rf dist && cross-env PARCEL_WORKERS=0 parcel build public/index.html --no-cache"
+  },
+  "targets": {
+    "default": {
+      "publicUrl": "./"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

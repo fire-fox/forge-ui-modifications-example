@@ -31,10 +31,13 @@ resources:
     path: static/admin-page/dist
 permissions:
   scopes:
-    - manage:jira-configuration
     - read:jira-user
     - read:jira-work
     - write:jira-work
+    - manage:jira-configuration
+    - read:project:jira
+    - write:field:jira
+    - manage:jira-project
   content:
     styles:
       - 'unsafe-inline'
